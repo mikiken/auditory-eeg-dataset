@@ -45,7 +45,8 @@ When you want to directly start from the preprocessed data (which is the output 
 you can download the **derivatives** folder. This folder contains all the necessary files to run the technical validation. This can also be downloaded using [the download tool](download_code/README.md) as follows:
 
 ```bash
-python3 download_code/download_script.py --subset preprocessed /path/to/local/folder
+mkdir -p downloads
+PYTHONPATH=$(pwd):$PYTHONPATH uv run ./download_code/download_script.py --subset preprocessed ./downloads
 ```
 
 
