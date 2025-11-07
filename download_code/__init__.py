@@ -183,7 +183,14 @@ class DataverseDownloader:
                 return filepath
         os.makedirs(os.path.dirname(filepath), exist_ok=True)
         print(f"{print_preamble}Downloading {path} to {filepath}...", end=" ")
-        urllib.request.urlretrieve(self.get_url(mapping['id']), filename=filepath)
+        try:
+            with urllib.request.urlopen(
+                self.get_url(mapping["id"])
+            ) as response, open(filepath, "wb") as out_file:
+                out_file.write(response.read())
+        except urllib.error.HTTPError as e:
+            print(f"Failed to download {path}: {e}")
+            return filepath
 
         extra_msg = ""
         if self.check_md5:
