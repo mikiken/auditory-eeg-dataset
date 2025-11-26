@@ -8,3 +8,4 @@ pandas
 pybids
 seaborn
 brain_pipe
+tensorflow

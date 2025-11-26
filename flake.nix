@@ -43,11 +43,13 @@
               ponysay
               nixpkgs-python.packages.${system}."3.7"
               pkgs.stdenv.cc.cc.lib
+              pkgs.zlib
+              pkgs.cudaPackages_11_8.cudatoolkit
             ];
 
             # Set any environment variables for your development environment
             env = {
-              LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib";
+              LD_LIBRARY_PATH = "${pkgs.stdenv.cc.cc.lib}/lib:${pkgs.zlib}/lib:${pkgs.cudaPackages.cudatoolkit}/lib";
             };
 
             # Add any shell logic you want executed when the environment is activated
